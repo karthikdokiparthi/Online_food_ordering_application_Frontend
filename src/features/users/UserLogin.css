@@ -1,0 +1,174 @@
+/* UserLogin.css */
+.login-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.branding-side {
+    flex: 1;
+    background: linear-gradient(135deg, #4ecdc4, #45b7af);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.branding-content {
+    text-align: center;
+    max-width: 500px;
+}
+
+.app-name {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tagline {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.food-illustration {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 3rem;
+    margin-top: 2rem;
+}
+
+.form-side {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    padding: 2rem;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #2d3436;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #636e72;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #dfe6e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #ff7675;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #4ecdc4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-btn:hover {
+    background: #45b7af;
+}
+
+.signup-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #636e72;
+}
+
+.signup-link span {
+    color: #4ecdc4;
+    cursor: pointer;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.alert {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+}
+
+.alert.success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.alert.error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .branding-side {
+        padding: 2rem 1rem;
+    }
+
+    .form-side {
+        padding: 2rem 1rem;
+    }
+}
+
+/* Additional Mobile Optimization */
+@media (max-width: 480px) {
+    .app-name {
+        font-size: 2.5rem;
+    }
+
+    .tagline {
+        font-size: 1.1rem;
+    }
+
+    .form-container {
+        padding: 1.5rem;
+    }
+
+    input {
+        padding: 0.7rem;
+    }
+
+    .login-btn {
+        padding: 0.9rem;
+        font-size: 0.95rem;
+    }
+}
