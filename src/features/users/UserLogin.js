@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { userLogin } from './userSlice';
-import { isTokenExpired } from '../utils/Token';
+import { isTokenExpired } from '../../utils/token';
 import './UserLogin.css';
 
 function UserLogin() {
