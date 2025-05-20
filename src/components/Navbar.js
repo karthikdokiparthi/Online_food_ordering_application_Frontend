@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaUtensils, FaBars, FaTimes } from 'react-icons/fa';
-import { logout } from '../user/userSlice';
+import { logout } from '../features/users/userSlice';
 import './Navbar.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { isTokenExpired } from '../utils/token';
