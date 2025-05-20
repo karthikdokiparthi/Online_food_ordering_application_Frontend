@@ -73,6 +73,7 @@ const Home = () => {
                     <button className="app-store-btn">App Store</button>
                     <button className="google-play-btn">Google Play</button>
                 </div>
+                <p>Coming Soon.....</p>
             </section>
         </div>
     );
