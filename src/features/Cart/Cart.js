@@ -33,15 +33,9 @@ function Cart() {
                                 <p>${item.price}</p>
                                 <p>Qty: {item.quantity}</p>
                                 <p>Total: ${(item.price * item.quantity).toFixed(2)}</p>
-                                <button onClick={() => dispatch(increaseQty(item))}>
-                                    <i className="fas fa-plus"></i> Add
-                                </button>
-                                <button onClick={() => dispatch(decreaseQty(item))}>
-                                    <i className="fas fa-minus"></i> Remove
-                                </button>
-                                <button onClick={() => dispatch(deleteFromCart(item))}>
-                                    <i className="fas fa-trash"></i> Delete
-                                </button>
+                                <button className="btn-inc" onClick={() => dispatch(increaseQty(item))}>+</button>
+                                <button className="btn-dec" onClick={() => dispatch(decreaseQty(item))}>-</button>
+                                <button className="btn-delete" onClick={() => dispatch(deleteFromCart(item))}>Delete</button>
                             </div>
                         </div>
                     ))}

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllDishes, fetchDishesByCategory, clearSelectedCategory } from './restaurantSlice';
 import { addToCart } from '../Cart/cartSlice';
 import MiniDishList from './MiniDishList';
-import './dishes.css';
+import './Dishes.css';
 
 function Dishes() {
     const [selectedDish, setSelectedDish] = useState(null);

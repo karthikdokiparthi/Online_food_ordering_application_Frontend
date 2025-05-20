@@ -1,6 +1,6 @@
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import API from '../api';
+import API from '../../api';
 
 // Fetching the list of all restaurants
 export const fetchRestaurants = createAsyncThunk('restaurant', async () => {
@@ -10,7 +10,7 @@ export const fetchRestaurants = createAsyncThunk('restaurant', async () => {
 
 // Fetching dishes for a specific restaurant
 export const fetchRestaurantDishes = createAsyncThunk('restaurant/dishes', async (id) => {
-    const response = await API.get(`/dish/${id}`);
+    const response = await API.get(`/dishes/${id}`);
     return response.data;
 });
 

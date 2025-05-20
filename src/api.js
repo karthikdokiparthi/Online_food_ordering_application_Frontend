@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { isTokenExpired } from './utils/Token'; // Import from your utility file
+import { isTokenExpired } from './utils/token'; // Import from your utility file
 
 const API = axios.create({
     baseURL: 'http://localhost:8080',

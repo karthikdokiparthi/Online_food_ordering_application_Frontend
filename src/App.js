@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import './App.css';
 import Home from './pages/Home';
 import Restaurant from './features/restaurant/Restaurant';
 import Dishes from './features/restaurant/Dishes';
