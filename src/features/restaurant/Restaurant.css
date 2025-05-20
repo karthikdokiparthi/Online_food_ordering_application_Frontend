@@ -1,0 +1,418 @@
+/* Modern Base Styles */
+.restaurant-app {
+    max-width: 1400px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 2rem;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #2d3436;
+    background-color: #f9f9f9;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 1.8rem;
+    color: #ff7675;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* Glassmorphism Header */
+.app-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2.5rem 0;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, rgba(255, 118, 117, 0.8) 0%, rgba(253, 121, 168, 0.8) 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.app-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.app-header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-header p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Section Titles with Creative Underline */
+.section-title,
+.section-menu-title {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    color: #2d3436;
+    position: relative;
+    padding-bottom: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.section-title::after,
+.section-menu-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #ff7675 0%, #fdcb6e 100%);
+    border-radius: 2px;
+}
+
+.section-menu-title::after {
+    width: 100px;
+    background: linear-gradient(90deg, #74b9ff 0%, #a29bfe 100%);
+}
+
+/* Restaurant Grid - Modern Card Design */
+.restaurant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.restaurant-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.restaurant-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.restaurant-card.active {
+    box-shadow: 0 0 0 3px #ff7675, 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.restaurant-image-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.restaurant-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.restaurant-card:hover .restaurant-image {
+    transform: scale(1.1);
+}
+
+.restaurant-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 118, 117, 0.8) 0%, rgba(253, 121, 168, 0.8) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.restaurant-card:hover .restaurant-overlay {
+    opacity: 1;
+}
+
+.restaurant-overlay span {
+    color: white;
+    font-weight: 600;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 0.8rem 1.5rem;
+    border: 2px solid white;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.restaurant-card:hover .restaurant-overlay span {
+    transform: scale(1.05);
+}
+
+.restaurant-details {
+    padding: 1.5rem;
+}
+
+.restaurant-details h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.4rem;
+    color: #2d3436;
+    font-weight: 600;
+}
+
+.cuisine-type {
+    color: #636e72;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.cuisine-type::before {
+    content: '🍽️';
+    margin-right: 0.5rem;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+}
+
+.star {
+    font-size: 1.2rem;
+    margin-right: 0.2rem;
+}
+
+.star.filled {
+    color: #fdcb6e;
+    text-shadow: 0 2px 4px rgba(253, 203, 110, 0.4);
+}
+
+/* Menu Section - Modern Design */
+.menu-section {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    position: relative;
+}
+
+.menu-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent 0%, #74b9ff 50%, transparent 100%);
+}
+
+.menu-header {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.restaurant-description {
+    color: #636e72;
+    max-width: 700px;
+    margin: 1rem auto 0;
+    line-height: 1.7;
+    font-size: 1.1rem;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.menu-item {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    display: flex;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.menu-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.menu-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+}
+
+.menu-item-image {
+    width: 140px;
+    height: 140px;
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.menu-item-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.menu-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.menu-item:hover .menu-item-image img {
+    transform: scale(1.1);
+}
+
+.menu-item-details {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item-details h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.3rem;
+    color: #2d3436;
+    font-weight: 600;
+}
+
+.item-description {
+    color: #636e72;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+    line-height: 1.6;
+}
+
+.item-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price {
+    font-weight: 700;
+    color: #ff7675;
+    font-size: 1.3rem;
+}
+
+.add-to-cart {
+    background: linear-gradient(135deg, #ff7675 0%, #fdcb6e 100%);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 118, 117, 0.3);
+}
+
+.add-to-cart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 118, 117, 0.4);
+}
+
+.no-dishes {
+    text-align: center;
+    grid-column: 1 / -1;
+    color: #636e72;
+    padding: 3rem;
+    font-size: 1.2rem;
+}
+
+/* Visibility Transitions */
+.menu-section.hidden {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.menu-section.visible {
+    opacity: 1;
+    height: auto;
+    transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .restaurant-app {
+        padding: 1rem;
+    }
+
+    .app-header h1 {
+        font-size: 2.2rem;
+    }
+
+    .restaurant-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-item {
+        flex-direction: column;
+    }
+
+    .menu-item-image {
+        width: 100%;
+        height: 180px;
+    }
+}
