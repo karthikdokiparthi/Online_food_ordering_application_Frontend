@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchRestaurants, fetchRestaurantDishes } from './restaurantSlice';
-import { addToCart } from './cartSlice';
+import { addToCart } from '../Cart/cartSlice';
 import './Restaurant.css';
 
 function Restaurant() {

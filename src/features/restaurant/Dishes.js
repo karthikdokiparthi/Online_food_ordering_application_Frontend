@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FaStar, FaRegStar, FaStarHalfAlt, FaTimes } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllDishes, fetchDishesByCategory, clearSelectedCategory } from './restaurantSlice';
-import { addToCart } from './cartSlice';
+import { addToCart } from '../Cart/cartSlice';
 import MiniDishList from './MiniDishList';
 import './dishes.css';
 
