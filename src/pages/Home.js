@@ -46,18 +46,10 @@ const Home = () => {
             <section className="popular-dishes">
                 <h2>Popular Dishes</h2>
                 <div className="dishes-grid">
-                    {[1, 2, 3, 4].map((item) => (
+                    {["https://images7.alphacoders.com/596/596343.jpg", "https://static.vecteezy.com/system/resources/previews/019/023/604/non_2x/front-view-tasty-meat-burger-with-cheese-and-salad-free-photo.jpg", "https://img.freepik.com/free-photo/gourmet-chicken-biryani-with-steamed-basmati-rice-generated-by-ai_188544-13480.jpg?ga=GA1.1.1880183647.1738560082&semt=ais_hybrid&w=740", "https://images8.alphacoders.com/107/thumb-1920-1072808.jpg"].map((item) => (
                         <div key={item} className="dish-card">
                             <div className="dish-image">
-                                <img src={`https://source.unsplash.com/random/300x200/?food,${item}`} alt={`Dish ${item}`} />
-                            </div>
-                            <div className="dish-info">
-                                <h3>Delicious Dish {item}</h3>
-                                <p className="dish-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                <div className="dish-footer">
-                                    <span className="dish-price">${(10 + item).toFixed(2)}</span>
-                                    <button className="add-to-cart">Add to Cart</button>
-                                </div>
+                                <img src={`${item}`} alt={`Dish ${item}`} />
                             </div>
                         </div>
                     ))}

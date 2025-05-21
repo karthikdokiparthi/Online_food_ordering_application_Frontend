@@ -305,7 +305,7 @@
 
 .modal-close:hover {
     transform: rotate(90deg);
-    background: var(--primary);
+    background: #FF6B6B;
     color: var(--white);
 }
 
