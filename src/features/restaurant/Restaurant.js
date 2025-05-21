@@ -108,7 +108,10 @@ function Restaurant() {
                                                 <p className="item-description">{dish.description || 'A delicious dish you will love'}</p>
                                                 <div className="item-footer">
                                                     <span className="price">${dish.price.toFixed(2)}</span>
-                                                    <button className="add-to-cart" onClick={(e) => dispatch(addToCart(dish))}>Add to Cart</button>
+                                                    <button
+                                                        className="add-to-cart"
+                                                        onClick={(e) => dispatch(addToCart({ dishId: dish.id, quantity: 1 }))}
+                                                    >Add to Cart</button>
                                                 </div>
                                             </div>
                                         </div>

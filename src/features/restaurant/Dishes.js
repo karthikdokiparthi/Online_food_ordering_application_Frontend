@@ -127,9 +127,8 @@ function Dishes() {
                                     className="dish-button"
                                     onClick={(e) => {
                                         e.stopPropagation();
-                                        dispatch(addToCart(item));
-                                    }}
-                                >
+                                        dispatch(addToCart({ dishId: item.id, quantity: 1 }));
+                                    }}>
                                     Add to Cart
                                 </button>
                             </div>
@@ -178,9 +177,8 @@ function Dishes() {
                                         className="modal-button"
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            dispatch(addToCart(selectedDish));
-                                        }}
-                                    >
+                                            dispatch(addToCart({ dishId: selectedDish.id, quantity: 1 }));
+                                        }}>
                                         Add to Cart - ${selectedDish.price.toFixed(2)}
                                     </button>
                                 </div>
