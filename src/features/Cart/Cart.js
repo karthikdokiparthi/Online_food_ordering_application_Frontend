@@ -23,6 +23,8 @@ const Cart = () => {
             setLocalLoading(cartItemId);
             try {
                 await dispatch(updateCart({ cartItemId, quantity: newQuantity })).unwrap();
+            } catch (error) {
+                console.log(error);
             } finally {
                 setLocalLoading(null);
             }
@@ -33,8 +35,8 @@ const Cart = () => {
         setLocalLoading(cartItemId);
         try {
             await dispatch(removeCartItem(cartItemId)).unwrap();
-        } finally {
-            setLocalLoading(null);
+        } catch (error) {
+            console.log(error);
         }
     };
 
@@ -42,8 +44,8 @@ const Cart = () => {
         setLocalLoading('clear');
         try {
             await dispatch(clearCart()).unwrap();
-        } finally {
-            setLocalLoading(null);
+        } catch (error) {
+            console.log(error);
         }
     };
 
@@ -75,17 +77,16 @@ const Cart = () => {
                                         <button
                                             type="button"
                                             onClick={() => handleQuantityChange(item.id, item.quantity, false)}
-                                            disabled={item.quantity <= 1 || localLoading === item.id}
+                                            disabled={item.quantity <= 1}
                                         >
-                                            {localLoading === item.id ? '...' : '-'}
+                                            -
                                         </button>
                                         <span>{item.quantity}</span>
                                         <button
                                             type="button"
                                             onClick={() => handleQuantityChange(item.id, item.quantity, true)}
-                                            disabled={localLoading === item.id}
                                         >
-                                            {localLoading === item.id ? '...' : '+'}
+                                            +
                                         </button>
                                         <span style={{ marginLeft: '12px' }}>
                                             ${(item.quantity * item.price).toFixed(2)}
@@ -96,9 +97,8 @@ const Cart = () => {
                                     type="button"
                                     className="cart-remove-btn"
                                     onClick={() => handleRemove(item.id)}
-                                    disabled={localLoading === item.id}
                                 >
-                                    {localLoading === item.id ? 'Removing...' : 'Remove'}
+                                    Remove
                                 </button>
                             </div>
                         ))}
@@ -110,9 +110,8 @@ const Cart = () => {
                             type="button"
                             className="cart-clear-btn"
                             onClick={handleClear}
-                            disabled={localLoading === 'clear'}
                         >
-                            {localLoading === 'clear' ? 'Clearing...' : 'Clear Cart'}
+                            Clear
                         </button>
                     </div>
                 </>

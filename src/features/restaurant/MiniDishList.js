@@ -36,12 +36,6 @@ function MiniDishList() {
                         {category.name}
                     </li>
                 ))}
-                <li
-                    className="clear-category"
-                    onClick={() => dispatch(fetchAllDishes())}
-                >
-                    Show All
-                </li>
             </ul>
         </div>
     );

@@ -1,6 +1,6 @@
 :root {
-    --primary: #ff6b6b;
-    --primary-light: #ff8e8e;
+    --primary: #4ecdc4;
+    --primary-light: #45b7af;
     --secondary: #6e8efb;
     --secondary-light: #a777e3;
     --white: #ffffff;
@@ -25,7 +25,7 @@
 
 .nav-container.scrolled {
     padding: 0.8rem 2rem;
-    background: rgba(255, 107, 107, 0.95);
+    background: rgba(81, 202, 206, 0.95);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 

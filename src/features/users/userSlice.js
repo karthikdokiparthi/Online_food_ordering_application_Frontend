@@ -1,15 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import API from "../../api";
 
 // Register user
 export const userRegistration = createAsyncThunk('user/register', async (user) => {
-    const response = await axios.post('http://localhost:8080/register', user);
+    const response = await API.post('/register', user);
     return response.data;
 });
 
 // Login user
 export const userLogin = createAsyncThunk('user/login', async (user) => {
-    const response = await axios.post('http://localhost:8080/login', user);
+    const response = await API.post('/login', user);
     return response.data;
 });
 

@@ -10,10 +10,9 @@
     --success: #55EFC4;
     --warning: #FDCB6E;
     --danger: #E63946;
-    --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    --gradient: linear-gradient(135deg, #FF6B6B 0%, #FF9E43 100%);
 }
 
-/* Base Styles */
 .dishes-main {
     max-width: 1400px;
     margin: 0 auto;

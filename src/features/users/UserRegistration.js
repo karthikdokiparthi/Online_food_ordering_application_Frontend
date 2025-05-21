@@ -1,4 +1,3 @@
-// UserRegistration.js
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +6,8 @@ import './UserRegistration.css';
 
 function UserRegistration() {
     const [user, setUser] = useState({
-        username: '',
+        firstName: '',
+        lastName: '',
         email: '',
         password: '',
         confirmPassword: ''
@@ -29,15 +29,18 @@ function UserRegistration() {
             return;
         }
 
+        const { confirmPassword, ...userData } = user;
+
         try {
-            await dispatch(userRegistration(user)).unwrap();
+            await dispatch(userRegistration(userData)).unwrap();
             setMessage({ type: 'success', text: "Registration successful! Redirecting..." });
 
             setTimeout(() => {
                 navigate('/login');
             }, 1500);
         } catch (error) {
-            setMessage({ type: 'error', text: "Registration failed. Please try again." });
+            const errorMessage = error.message || "Registration failed. Please try again.";
+            setMessage({ type: 'error', text: errorMessage });
         }
     };
 
@@ -51,14 +54,29 @@ function UserRegistration() {
                     <h2>Create Account</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="input-group">
-                            <label htmlFor="username">Username</label>
+                            <label htmlFor="firstName">First Name</label>
                             <input
                                 type="text"
-                                id="username"
-                                name="username"
-                                value={user.username}
+                                id="firstName"
+                                name="firstName"
+                                value={user.firstName}
                                 onChange={handleChange}
-                                placeholder="Enter your username"
+                                placeholder="Enter your first name"
+                                autoComplete="given-name"
+                                required
+                            />
+                        </div>
+
+                        <div className="input-group">
+                            <label htmlFor="lastName">Last Name</label>
+                            <input
+                                type="text"
+                                id="lastName"
+                                name="lastName"
+                                value={user.lastName}
+                                onChange={handleChange}
+                                placeholder="Enter your last name"
+                                autoComplete="family-name"
                                 required
                             />
                         </div>
@@ -72,6 +90,7 @@ function UserRegistration() {
                                 value={user.email}
                                 onChange={handleChange}
                                 placeholder="Enter your email"
+                                autoComplete="email"
                                 required
                             />
                         </div>
@@ -85,6 +104,8 @@ function UserRegistration() {
                                 value={user.password}
                                 onChange={handleChange}
                                 placeholder="••••••••"
+                                autoComplete="new-password"
+                                minLength="8"
                                 required
                             />
                         </div>
@@ -98,6 +119,8 @@ function UserRegistration() {
                                 value={user.confirmPassword}
                                 onChange={handleChange}
                                 placeholder="••••••••"
+                                autoComplete="new-password"
+                                minLength="8"
                                 required
                             />
                         </div>

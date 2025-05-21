@@ -75,7 +75,7 @@ const Navbar = () => {
             <div className="nav-content">
                 <Link to="/home" className="nav-logo" onClick={closeMobileMenu}>
                     <FaUtensils className="nav-logo-icon" />
-                    <span>Gourmet Haven</span>
+                    <span>QuickBite</span>
                 </Link>
 
                 <button
