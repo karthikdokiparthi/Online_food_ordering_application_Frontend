@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { userAddress } from './userSlice';
+import './userAddress.css'
 
 function UserAddress() {
     const dispatch = useDispatch();
@@ -8,7 +9,7 @@ function UserAddress() {
         fullName: '',
         phoneNumber: '',
         alternateNumber: '',
-        pincode: '',
+        pinCode: '',
         city: '',
         state: '',
         houseNo: '',
@@ -27,10 +28,10 @@ function UserAddress() {
         dispatch(userAddress(user));
     }
     return (
-        <div className="form-container">
+        <div className="user-address__form-container">
             <h2>Shipping Address</h2>
             <form onSubmit={handleSubmit}>
-                <div className="input-group">
+                <div className=".user-address__input-group">
                     <label htmlFor="fullName">Full Name</label>
                     <input
                         type="text"
@@ -44,7 +45,7 @@ function UserAddress() {
                     />
                 </div>
 
-                <div className="input-group">
+                <div className="user-address__input-group">
                     <label htmlFor="phoneNumber">Phone Number</label>
                     <input
                         type="tel"
@@ -59,7 +60,7 @@ function UserAddress() {
                     />
                 </div>
 
-                <div className="input-group">
+                <div className="user-address__input-group">
                     <label htmlFor="alternateNumber">Alternate Number (Optional)</label>
                     <input
                         type="tel"
@@ -73,14 +74,14 @@ function UserAddress() {
                     />
                 </div>
 
-                <div className="input-row">
+                <div className="user-address__input-row">
                     <div className="input-group">
                         <label htmlFor="pincode">Pincode</label>
                         <input
                             type="text"
                             id="pincode"
-                            name="pincode"
-                            value={user.pincode}
+                            name="pinCode"
+                            value={user.pinCode}
                             onChange={handleChange}
                             placeholder="Enter pincode"
                             autoComplete="postal-code"
@@ -88,7 +89,7 @@ function UserAddress() {
                         />
                     </div>
 
-                    <div className="input-group">
+                    <div className="user-address__input-group">
                         <label htmlFor="city">City</label>
                         <input
                             type="text"
@@ -103,7 +104,7 @@ function UserAddress() {
                     </div>
                 </div>
 
-                <div className="input-group">
+                <div className="user-address__input-group">
                     <label htmlFor="state">State</label>
                     <input
                         type="text"
@@ -117,7 +118,7 @@ function UserAddress() {
                     />
                 </div>
 
-                <div className="input-row">
+                <div className="user-address__input-row">
                     <div className="input-group">
                         <label htmlFor="homeNo">House/Apartment No.</label>
                         <input
@@ -132,7 +133,7 @@ function UserAddress() {
                         />
                     </div>
 
-                    <div className="input-group">
+                    <div className="user-address__input-group">
                         <label htmlFor="area">Area/Street</label>
                         <input
                             type="text"
@@ -147,7 +148,7 @@ function UserAddress() {
                     </div>
                 </div>
 
-                <button type="submit" className="submit-btn">
+                <button type="submit" className="user-address__submit-btn">
                     Save Address
                 </button>
             </form>
