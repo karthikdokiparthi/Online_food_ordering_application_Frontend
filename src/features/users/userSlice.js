@@ -13,8 +13,13 @@ export const userLogin = createAsyncThunk('user/login', async (user) => {
     return response.data;
 });
 
-export const userAddress = createAsyncThunk('/user/address', async (user) => {
+export const userAddress = createAsyncThunk('user/address', async (user) => {
     const response = await API.post('/address', user);
+    return response.data;
+})
+
+export const userDetails = createAsyncThunk('user/details', async () => {
+    const response = await API.get('/username');
     return response.data;
 })
 
@@ -29,6 +34,8 @@ const userSlice = createSlice({
         error: null,
         registerStatus: 'idle',
         loginStatus: 'idle',
+        userDetailsStatus: 'idel',
+        addresStatus: 'idel'
     },
     reducers: {
         logout(state) {
@@ -70,7 +77,31 @@ const userSlice = createSlice({
                 state.loginStatus = "error";
                 state.error = action.error.message;
                 state.isAuthenticated = false;
+            })
+
+            .addCase(userAddress.pending, (state) => {
+                state.addresStatus = "loading";
+            })
+            .addCase(userAddress.fulfilled, (state, action) => {
+                state.addresStatus = "success";
+                state.user = action.payload;
+            })
+            .addCase(userAddress.rejected, (state, action) => {
+                state.addresStatus = "error";
+                state.error = action.message.error;
+            })
+            .addCase(userDetails.pending, (state) => {
+                state.userDetailsStatus = "loading";
+            })
+            .addCase(userDetails.fulfilled, (state, action) => {
+                state.userDetailsStatus = "success";
+                state.user = action.payload;
+            })
+            .addCase(userDetails.rejected, (state, action) => {
+                state.userDetailsStatus = "error";
+                state.error = action.error.message;
             });
+
     }
 });
 

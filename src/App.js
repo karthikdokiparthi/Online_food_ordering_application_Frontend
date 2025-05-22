@@ -9,6 +9,7 @@ import UserRegistration from './features/users/UserRegistration';
 import MainLayout from './MainLayout';
 import Cart from './features/Cart/Cart';
 import UserAddress from './features/users/UserAddress';
+import UserProfile from './features/users/UserProfile';
 
 // Private Route Component
 const PrivateRoute = ({ children }) => {
@@ -48,6 +49,11 @@ function App() {
           <Route path='/address' element={
             <PrivateRoute>
               <UserAddress />
+            </PrivateRoute>
+          } />
+          <Route path='/profile' element={
+            <PrivateRoute>
+              <UserProfile />
             </PrivateRoute>
           } />
         </Route>

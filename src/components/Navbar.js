@@ -133,6 +133,15 @@ const Navbar = () => {
                             Address
                         </Link>
                     </li>
+                    <li className="nav-item">
+                        <Link
+                            to="/profile"
+                            className={`nav-link ${isActive('/profile') ? 'active' : ''}`}
+                            onClick={closeMobileMenu}
+                        >
+                            Profile
+                        </Link>
+                    </li>
                     {isAuthenticated && (
                         <li className="nav-item">
                             <button
