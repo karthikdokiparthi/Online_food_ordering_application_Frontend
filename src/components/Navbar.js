@@ -124,6 +124,15 @@ const Navbar = () => {
                             Cart
                         </Link>
                     </li>
+                    <li className="nav-item">
+                        <Link
+                            to="/address"
+                            className={`nav-link ${isActive('/address') ? 'active' : ''}`}
+                            onClick={closeMobileMenu}
+                        >
+                            Address
+                        </Link>
+                    </li>
                     {isAuthenticated && (
                         <li className="nav-item">
                             <button

@@ -13,6 +13,11 @@ export const userLogin = createAsyncThunk('user/login', async (user) => {
     return response.data;
 });
 
+export const userAddress = createAsyncThunk('/user/address', async (user) => {
+    const response = await API.post('/address', user);
+    return response.data;
+})
+
 const initialToken = localStorage.getItem('token');
 
 const userSlice = createSlice({
