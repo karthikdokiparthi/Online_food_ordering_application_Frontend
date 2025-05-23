@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaUtensils, FaBars, FaTimes } from 'react-icons/fa';
 import { logout } from '../features/users/userSlice';
 import './Navbar.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { isTokenExpired } from '../utils/token';
 import { CgProfile } from "react-icons/cg";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -15,7 +15,6 @@ const Navbar = () => {
     const [logoutMessage, setLogoutMessage] = useState(null);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const isAuthenticated = useSelector(state => state.users.isAuthenticated);
 
     const handleAutoLogout = useCallback(() => {
         setLogoutMessage('Your session has expired. Please login again.');
@@ -51,15 +50,6 @@ const Navbar = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
-
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        dispatch(logout());
-        navigate('/login', {
-            state: { message: 'You have been successfully logged out' }
-        });
-        closeMobileMenu();
-    };
 
     const isActive = (path) => location.pathname === path;
 
@@ -133,17 +123,6 @@ const Navbar = () => {
                             <p className='icon'><CgProfile /></p>
                         </Link>
                     </li>
-                    {isAuthenticated && (
-                        <li className="nav-item">
-                            <button
-                                className="logout-btn"
-                                onClick={handleLogout}
-                                aria-label="Logout"
-                            >
-                                <span>Logout</span>
-                            </button>
-                        </li>
-                    )}
                 </ul>
             </div>
         </nav>
