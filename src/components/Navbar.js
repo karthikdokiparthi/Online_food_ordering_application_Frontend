@@ -127,15 +127,6 @@ const Navbar = () => {
                     </li>
                     <li className="nav-item">
                         <Link
-                            to="/address"
-                            className={`nav-link ${isActive('/address') ? 'active' : ''}`}
-                            onClick={closeMobileMenu}
-                        >
-                            Address
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link
                             to="/profile"
                             onClick={closeMobileMenu}
                         >

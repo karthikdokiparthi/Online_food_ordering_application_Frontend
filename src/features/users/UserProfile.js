@@ -2,17 +2,22 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userDetails, userAddressDetails } from './userSlice';
 import './UserProfile.css';
+import { useNavigate } from 'react-router-dom';
 
 function UserProfile() {
     const dispatch = useDispatch();
 
-    // Correctly access userDetailsStatus from state
     const { user, address, userDetailsStatus, addressDetailsStatus, error } = useSelector((state) => state.users);
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(userDetails());
         dispatch(userAddressDetails());
     }, [dispatch]);
+
+    const editAddress = () => {
+        navigate('/address')
+    }
 
     if (userDetailsStatus === "pending" && addressDetailsStatus === "pending") return (<div>Loading...</div>)
     if (userDetailsStatus === "error" && addressDetailsStatus === "error") return (<div>Error {error}</div>)
@@ -30,6 +35,7 @@ function UserProfile() {
                 <li>State: {address.state}</li>
                 <li>House No: {address.houseNo}</li>
                 <li>Area: {address.area}</li>
+                <button onClick={editAddress}>Edit Address</button>
             </div>
         </div >
     );

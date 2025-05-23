@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { userAddress } from './userSlice';
 import './userAddress.css'
+import { useNavigate } from 'react-router-dom';
 
 function UserAddress() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [user, setUser] = useState({
         fullName: '',
         phoneNumber: '',
@@ -26,6 +28,10 @@ function UserAddress() {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(userAddress(user));
+    }
+
+    const handleReturn = () => {
+        navigate('/profile')
     }
     return (
         <div className="user-address__form-container">
@@ -148,7 +154,7 @@ function UserAddress() {
                     </div>
                 </div>
 
-                <button type="submit" className="user-address__submit-btn">
+                <button type="submit" className="user-address__submit-btn" onClick={handleReturn}>
                     Save Address
                 </button>
             </form>
