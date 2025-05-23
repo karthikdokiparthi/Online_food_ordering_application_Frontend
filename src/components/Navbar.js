@@ -5,6 +5,8 @@ import { logout } from '../features/users/userSlice';
 import './Navbar.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { isTokenExpired } from '../utils/token';
+import { CgProfile } from "react-icons/cg";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 const Navbar = () => {
     const location = useLocation();
@@ -118,10 +120,9 @@ const Navbar = () => {
                     <li className="nav-item">
                         <Link
                             to="/cart"
-                            className={`nav-link ${isActive('/cart') ? 'active' : ''}`}
                             onClick={closeMobileMenu}
                         >
-                            Cart
+                            <AiOutlineShoppingCart />
                         </Link>
                     </li>
                     <li className="nav-item">
@@ -136,10 +137,9 @@ const Navbar = () => {
                     <li className="nav-item">
                         <Link
                             to="/profile"
-                            className={`nav-link ${isActive('/profile') ? 'active' : ''}`}
                             onClick={closeMobileMenu}
                         >
-                            Profile
+                            <CgProfile />
                         </Link>
                     </li>
                     {isAuthenticated && (

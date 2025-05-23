@@ -23,19 +23,27 @@ export const userDetails = createAsyncThunk('user/details', async () => {
     return response.data;
 })
 
+export const userAddressDetails = createAsyncThunk('user/addressData', async (user) => {
+    const response = await API.get('/address');
+    return response.data;
+})
+
+
 const initialToken = localStorage.getItem('token');
 
 const userSlice = createSlice({
     name: 'users',
     initialState: {
         user: {},
+        address: {},
         token: initialToken || null,
         isAuthenticated: !!initialToken,
         error: null,
         registerStatus: 'idle',
         loginStatus: 'idle',
         userDetailsStatus: 'idel',
-        addresStatus: 'idel'
+        addresStatus: 'idel',
+        addresDetailsStatus: 'idel'
     },
     reducers: {
         logout(state) {
@@ -99,6 +107,17 @@ const userSlice = createSlice({
             })
             .addCase(userDetails.rejected, (state, action) => {
                 state.userDetailsStatus = "error";
+                state.error = action.error.message;
+            })
+            .addCase(userAddressDetails.pending, (state) => {
+                state.addresDetailsStatus = "loading";
+            })
+            .addCase(userAddressDetails.fulfilled, (state, action) => {
+                state.addresDetailsStatus = "success";
+                state.address = action.payload;
+            })
+            .addCase(userAddressDetails.rejected, (state, action) => {
+                state.addresDetailsStatus = "error";
                 state.error = action.error.message;
             });
 
