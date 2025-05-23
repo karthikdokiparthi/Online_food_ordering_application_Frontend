@@ -122,7 +122,7 @@ const Navbar = () => {
                             to="/cart"
                             onClick={closeMobileMenu}
                         >
-                            <AiOutlineShoppingCart />
+                            <p className='icon'><AiOutlineShoppingCart /></p>
                         </Link>
                     </li>
                     <li className="nav-item">
@@ -130,7 +130,7 @@ const Navbar = () => {
                             to="/profile"
                             onClick={closeMobileMenu}
                         >
-                            <CgProfile />
+                            <p className='icon'><CgProfile /></p>
                         </Link>
                     </li>
                     {isAuthenticated && (

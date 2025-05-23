@@ -226,6 +226,21 @@
     box-shadow: 0 3px 10px rgba(0, 124, 240, 0.3);
 }
 
+.icon {
+    color: white;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.icon:hover {
+    color: rgb(210, 69, 69);
+}
+
 
 /* Responsive Styles */
 @media (max-width: 992px) {
