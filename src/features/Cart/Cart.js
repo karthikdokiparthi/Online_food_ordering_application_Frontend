@@ -119,8 +119,13 @@ const Cart = () => {
                         >
                             Clear
                         </button>
-                        <button onClick={handlePlaceOrder}>
+                        <button
+                            className="place-order-btn"
+                            onClick={handlePlaceOrder}
+                            disabled={cartItems.length === 0}
+                        >
                             Place Order
+                            <span className="button-arrow">→</span>
                         </button>
                     </div>
                 </>
