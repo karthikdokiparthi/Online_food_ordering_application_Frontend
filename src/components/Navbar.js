@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaUtensils, FaBars, FaTimes } from 'react-icons/fa';
 import { logout } from '../features/users/userSlice';
 import './Navbar.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { isTokenExpired } from '../utils/token';
 import { CgProfile } from "react-icons/cg";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -16,10 +16,13 @@ const Navbar = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const { cart: cartData } = useSelector((state) => state.cart);
+    const cartItems = cartData?.cartItems || [];
+    const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+
     const handleAutoLogout = useCallback(() => {
         setLogoutMessage('Your session has expired. Please login again.');
 
-        // Delay the actual logout and redirect
         const timer = setTimeout(() => {
             localStorage.removeItem('token');
             dispatch(logout());
@@ -57,7 +60,6 @@ const Navbar = () => {
 
     return (
         <nav className={`nav-container ${scrolled ? 'scrolled' : ''}`}>
-            {/* Message Display */}
             {logoutMessage && (
                 <div className="navbar-message error">
                     {logoutMessage}
@@ -111,8 +113,14 @@ const Navbar = () => {
                         <Link
                             to="/cart"
                             onClick={closeMobileMenu}
+                            className="cart-icon-container"
                         >
-                            <p className='icon'><AiOutlineShoppingCart /></p>
+                            <p className='icon'>
+                                <AiOutlineShoppingCart />
+                                {totalItems > 0 && (
+                                    <span className="cart-badge">{totalItems}</span>
+                                )}
+                            </p>
                         </Link>
                     </li>
                     <li className="nav-item">
