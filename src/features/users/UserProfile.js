@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userDetails, userAddressDetails, logout } from './userSlice';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './UserProfile.css';
+import { FiEdit, FiLogOut } from 'react-icons/fi';
 
 function UserProfile() {
     const dispatch = useDispatch();
@@ -46,7 +47,7 @@ function UserProfile() {
     };
 
     const editAddress = () => {
-        navigate('/address', { state: { background: location.pathname } });
+        navigate('/address');
     };
 
     const handleLogout = () => {
@@ -166,13 +167,13 @@ function UserProfile() {
                         className="profile-btn profile-btn--edit"
                         onClick={editAddress}
                     >
-                        Edit Address
+                        <FiEdit /> Edit Address
                     </button>
                     <button
                         className="profile-btn profile-btn--logout"
                         onClick={handleLogout}
                     >
-                        Logout
+                        <FiLogOut /> Logout
                     </button>
                 </div>
             </div>

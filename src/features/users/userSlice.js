@@ -13,16 +13,19 @@ export const userLogin = createAsyncThunk('user/login', async (user) => {
     return response.data;
 });
 
+//post user address
 export const userAddress = createAsyncThunk('user/address', async (user) => {
     const response = await API.post('/address', user);
     return response.data;
 })
 
+//get user info
 export const userDetails = createAsyncThunk('user/details', async () => {
     const response = await API.get('/username');
     return response.data;
 })
 
+//get user address
 export const userAddressDetails = createAsyncThunk('user/addressData', async (user) => {
     const response = await API.get('/address');
     return response.data;
@@ -36,6 +39,7 @@ const userSlice = createSlice({
     initialState: {
         user: {},
         address: {},
+        addressData: {},
         token: initialToken || null,
         isAuthenticated: !!initialToken,
         error: null,
@@ -87,17 +91,20 @@ const userSlice = createSlice({
                 state.isAuthenticated = false;
             })
 
+            //Update user address
             .addCase(userAddress.pending, (state) => {
                 state.addresStatus = "loading";
             })
             .addCase(userAddress.fulfilled, (state, action) => {
                 state.addresStatus = "success";
-                state.user = action.payload;
+                state.addressData = action.payload;
             })
             .addCase(userAddress.rejected, (state, action) => {
                 state.addresStatus = "error";
                 state.error = action.message.error;
             })
+
+            //Get user Details
             .addCase(userDetails.pending, (state) => {
                 state.userDetailsStatus = "loading";
             })
@@ -109,6 +116,8 @@ const userSlice = createSlice({
                 state.userDetailsStatus = "error";
                 state.error = action.error.message;
             })
+
+            //Get user address details
             .addCase(userAddressDetails.pending, (state) => {
                 state.addresDetailsStatus = "loading";
             })

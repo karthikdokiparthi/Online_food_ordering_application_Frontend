@@ -155,7 +155,7 @@ function UserAddress() {
                         </div>
                     </div>
 
-                    <button type="submit" className="user-address__submit-btn" onClick={handleReturn}>
+                    <button onClick={handleReturn} type="submit" className="user-address__submit-btn" >
                         Save Address
                     </button>
                 </form>
