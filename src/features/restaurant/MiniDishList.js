@@ -17,10 +17,10 @@ function MiniDishList() {
         { name: "Momo", img: 'https://img.freepik.com/free-photo/delicious-meal-table_23-2150857700.jpg' },
         { name: "Dosa", img: 'https://img.freepik.com/free-psd/delicious-masala-dosa-with-chutneys-south-indian-breakfast-food_84443-34830.jpg' },
         { name: "South Indian", img: 'https://img.freepik.com/free-photo/gourmet-bowl-with-healthy-rice-meat-vegetables-generated-by-ai_188544-14076.jpg' },
-        { name: "North Indian", img: 'https://img.freepik.com/free-psd/refreshing-fruit-juices-delightful-citrus-blend-healthy-lifestyle-choice_191095-90526.jpg' },
+        { name: "North Indian", img: 'https://img.onmanorama.com/content/dam/mm/en/food/features/images/2022/1/11/north-indian-cuisine.jpg' },
         { name: "Pure Veg", img: 'https://img.freepik.com/free-psd/palak-paneer-indian-cuisine-spinach-cheese-curry-dish-food-green_84443-35079.jpg' },
         { name: "Dessert", img: 'https://img.freepik.com/free-photo/pie-served-with-ice-cream-apple-slices-berry-sauce_141793-1234.jpg' },
-        { name: "Non-Veg", img: 'https://img.freepik.com/free-psd/refreshing-fruit-juices-delightful-citrus-blend-healthy-lifestyle-choice_191095-90526.jpg' },
+        { name: "Non-Veg", img: 'https://wallpapercave.com/wp/wp8202587.jpg' },
         { name: "Juice", img: 'https://img.freepik.com/free-psd/refreshing-fruit-juices-delightful-citrus-blend-healthy-lifestyle-choice_191095-90526.jpg' }
     ];
 
