@@ -7,11 +7,13 @@ import {
     clearCart
 } from './cartSlice';
 import './Cart.css';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const dispatch = useDispatch();
     const { cart: cartData, status, error } = useSelector((state) => state.cart);
     const [localLoading, setLocalLoading] = React.useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(fetchCart());
@@ -47,6 +49,10 @@ const Cart = () => {
         } catch (error) {
             console.log(error);
         }
+    };
+
+    const handlePlaceOrder = () => {
+        navigate('/placeorder')
     };
 
     if (status === 'loading' && !localLoading) return <div>Loading cart...</div>;
@@ -112,6 +118,9 @@ const Cart = () => {
                             onClick={handleClear}
                         >
                             Clear
+                        </button>
+                        <button onClick={handlePlaceOrder}>
+                            Place Order
                         </button>
                     </div>
                 </>
