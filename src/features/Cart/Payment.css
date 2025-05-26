@@ -1,0 +1,168 @@
+/* Payment.css */
+.payment-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.bubble-blast {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    animation: bubble-burst 1.5s ease-out forwards;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes bubble-burst {
+    0% {
+        transform: scale(0) translate(0, 0);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1) translate(var(--tx), var(--ty));
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(0.2) translate(var(--tx), var(--ty));
+        opacity: 0;
+    }
+}
+
+.payment-content {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 3rem 4rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: content-float 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.3s forwards;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@keyframes content-float {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.coming-soon-text {
+    margin-bottom: 2rem;
+}
+
+.coming-soon-text h1 {
+    color: #2c3e50;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.coming-soon-text p {
+    color: #6c757d;
+    font-size: 1.2rem;
+    margin: 1rem 0;
+    line-height: 1.6;
+}
+
+.ok-button {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+    color: white;
+    border: none;
+    padding: 1.2rem 3.5rem;
+    font-size: 1.3rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+.ok-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent);
+    transform: rotate(45deg);
+    transition: 0.5s;
+}
+
+.ok-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+}
+
+.ok-button:hover::before {
+    animation: button-glow 1.5s ease infinite;
+}
+
+@keyframes button-glow {
+    0% {
+        left: -50%;
+    }
+
+    100% {
+        left: 150%;
+    }
+}
+
+/* Bubble generator */
+@keyframes bubble-float {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100vh) scale(0.5);
+        opacity: 0;
+    }
+}
+
+.bubble {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: bubble-float 4s linear infinite;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .payment-content {
+        padding: 2rem;
+        margin: 1rem;
+    }
+
+    .coming-soon-text h1 {
+        font-size: 2rem;
+    }
+
+    .ok-button {
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+    }
+}

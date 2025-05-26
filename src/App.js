@@ -11,6 +11,7 @@ import Cart from './features/Cart/Cart';
 import UserAddress from './features/users/UserAddress';
 import UserProfile from './features/users/UserProfile';
 import PlaceOrder from './features/Cart/PlaceOrder';
+import Payment from './features/Cart/Payment';
 
 // Private Route Component
 const PrivateRoute = ({ children }) => {
@@ -55,6 +56,11 @@ function App() {
           <Route path='/placeorder' element={
             <PrivateRoute>
               <PlaceOrder />
+            </PrivateRoute>
+          } />
+          <Route path='/order-confirmation' element={
+            <PrivateRoute>
+              <Payment />
             </PrivateRoute>
           } />
           <Route path='/profile' element={
