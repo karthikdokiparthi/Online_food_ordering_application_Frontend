@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { userAddress } from './userSlice';
 import './userAddress.css'
 import { useNavigate } from 'react-router-dom';
@@ -28,11 +28,9 @@ function UserAddress() {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(userAddress(user));
-    }
-
-    const handleReturn = () => {
         navigate('/profile')
     }
+
     return (
         <div className="user-address__container">
             <div className="user-address__card">
@@ -155,7 +153,7 @@ function UserAddress() {
                         </div>
                     </div>
 
-                    <button onClick={handleReturn} type="submit" className="user-address__submit-btn" >
+                    <button type="submit" className="user-address__submit-btn" >
                         Save Address
                     </button>
                 </form>

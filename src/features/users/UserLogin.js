@@ -13,27 +13,31 @@ function UserLogin() {
     const location = useLocation();
 
     useEffect(() => {
-        // Clear existing tokens and messages on mount
+        // Clear token and messages on component mount
         localStorage.removeItem('token');
         setMessage(null);
 
-        // Handle both query parameters and state messages
+        // Handle URL query parameters and state messages
         const queryParams = new URLSearchParams(location.search);
         const stateMessage = location.state?.message;
         const sessionExpired = queryParams.get('session_expired');
 
-        if (stateMessage) {
-            setMessage({
-                type: 'success',
-                text: stateMessage
+        if (sessionExpired) {
+            navigate(location.pathname, {
+                replace: true,
+                state: { message: null }
             });
+        }
+
+        if (stateMessage) {
+            setMessage({ type: 'success', text: stateMessage });
         } else if (sessionExpired) {
             setMessage({
                 type: 'error',
                 text: 'Your session has expired. Please login again.'
             });
         }
-    }, [location]);
+    }, [location, navigate]);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -53,9 +57,9 @@ function UserLogin() {
             const result = await dispatch(userLogin(user)).unwrap();
             localStorage.setItem('token', result.token);
 
-            // Redirect to previous location or home
             navigate(location.state?.from || '/home', {
-                state: { message: null } // Clear any previous state
+                replace: true,
+                state: { message: null }
             });
 
         } catch (error) {
