@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { userAddress } from './userSlice';
-import './userAddress.css'
 import { useNavigate } from 'react-router-dom';
+import './userAddress.css';
 
 function UserAddress() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [bubbles, setBubbles] = useState([]);
     const [user, setUser] = useState({
         fullName: '',
         phoneNumber: '',
@@ -16,144 +17,161 @@ function UserAddress() {
         state: '',
         houseNo: '',
         area: ''
-    })
+    });
+
+    useEffect(() => {
+        const createBubbles = () => {
+            const newBubbles = Array.from({ length: 30 }, (_, i) => ({
+                id: i,
+                size: Math.random() * 30 + 10,
+                left: Math.random() * 100,
+                delay: Math.random() * 2,
+                duration: Math.random() * 3 + 2,
+                color: `hsla(${Math.random() * 360}, 70%, 80%, 0.7)`
+            }));
+            setBubbles(newBubbles);
+        };
+        createBubbles();
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setUser((prevUser) => ({
             ...prevUser, [name]: value
-        }))
-    }
+        }));
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(userAddress(user));
-        navigate('/profile')
-    }
+        navigate('/profile');
+    };
 
     return (
-        <div className="user-address__container">
-            <div className="user-address__card">
-                <h2 className="user-address__title">Shipping Address</h2>
-                <form onSubmit={handleSubmit} className="user-address__form">
-                    <div className=".user-address__input-group">
-                        <label htmlFor="fullName">Full Name</label>
-                        <input
-                            type="text"
-                            id="fullName"
-                            name="fullName"
-                            value={user.fullName}
-                            onChange={handleChange}
-                            placeholder="Enter your full name"
-                            autoComplete="name"
-                            required
-                        />
-                    </div>
+        <div className="address-container">
+            {bubbles.map(bubble => (
+                <div
+                    key={bubble.id}
+                    className="bubble"
+                    style={{
+                        width: `${bubble.size}px`,
+                        height: `${bubble.size}px`,
+                        left: `${bubble.left}%`,
+                        background: bubble.color,
+                        animationDelay: `${bubble.delay}s`,
+                        animationDuration: `${bubble.duration}s`
+                    }}
+                ></div>
+            ))}
 
-                    <div className="user-address__input-group">
-                        <label htmlFor="phoneNumber">Phone Number</label>
-                        <input
-                            type="tel"
-                            id="phoneNumber"
-                            name="phoneNumber"
-                            value={user.phoneNumber}
-                            onChange={handleChange}
-                            placeholder="Enter your phone number"
-                            autoComplete="tel"
-                            pattern="[0-9]{10}"
-                            required
-                        />
-                    </div>
+            <div className="address-content">
+                <div className="address-header">
+                    <h2>Shipping Address</h2>
+                </div>
 
-                    <div className="user-address__input-group">
-                        <label htmlFor="alternateNumber">Alternate Number (Optional)</label>
-                        <input
-                            type="tel"
-                            id="alternateNumber"
-                            name="alternateNumber"
-                            value={user.alternateNumber}
-                            onChange={handleChange}
-                            placeholder="Enter alternate number"
-                            autoComplete="tel"
-                            pattern="[0-9]{10}"
-                        />
-                    </div>
-
-                    <div className="user-address__input-row">
+                <form onSubmit={handleSubmit} className="address-form">
+                    <div className="form-grid">
                         <div className="input-group">
-                            <label htmlFor="pincode">Pincode</label>
+                            <label>Full Name</label>
                             <input
                                 type="text"
-                                id="pincode"
-                                name="pinCode"
-                                value={user.pinCode}
+                                name="fullName"
+                                value={user.fullName}
                                 onChange={handleChange}
-                                placeholder="Enter pincode"
-                                autoComplete="postal-code"
+                                placeholder="Your Name"
                                 required
                             />
                         </div>
 
-                        <div className="user-address__input-group">
-                            <label htmlFor="city">City</label>
-                            <input
-                                type="text"
-                                id="city"
-                                name="city"
-                                value={user.city}
-                                onChange={handleChange}
-                                placeholder="Enter city"
-                                autoComplete="address-level2"
-                                required
-                            />
-                        </div>
-                    </div>
-
-                    <div className="user-address__input-group">
-                        <label htmlFor="state">State</label>
-                        <input
-                            type="text"
-                            id="state"
-                            name="state"
-                            value={user.state}
-                            onChange={handleChange}
-                            placeholder="Enter state"
-                            autoComplete="address-level1"
-                            required
-                        />
-                    </div>
-
-                    <div className="user-address__input-row">
                         <div className="input-group">
-                            <label htmlFor="homeNo">House/Apartment No.</label>
+                            <label>Phone Number</label>
                             <input
-                                type="text"
-                                id="houseNo"
-                                name="houseNo"
-                                value={user.houseNo}
+                                type="tel"
+                                name="phoneNumber"
+                                value={user.phoneNumber}
                                 onChange={handleChange}
-                                placeholder="Enter house/apartment number"
-                                autoComplete="address-line1"
+                                placeholder="Mobile Number"
+                                pattern="[0-9]{10}"
                                 required
                             />
                         </div>
 
-                        <div className="user-address__input-group">
-                            <label htmlFor="area">Area/Street</label>
+                        <div className="input-group">
+                            <label>Alternate Number (Optional)</label>
+                            <input
+                                type="tel"
+                                name="alternateNumber"
+                                value={user.alternateNumber}
+                                onChange={handleChange}
+                                placeholder="Alternative contact"
+                                pattern="[0-9]{10}"
+                            />
+                        </div>
+
+                        <div className="input-row">
+                            <div className="input-group">
+                                <label>Pincode</label>
+                                <input
+                                    type="text"
+                                    name="pinCode"
+                                    value={user.pinCode}
+                                    onChange={handleChange}
+                                    placeholder="123456"
+                                    required
+                                />
+                            </div>
+                            <div className="input-group">
+                                <label>City</label>
+                                <input
+                                    type="text"
+                                    name="city"
+                                    value={user.city}
+                                    onChange={handleChange}
+                                    placeholder="Your city"
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <div className="input-group">
+                            <label>State</label>
                             <input
                                 type="text"
-                                id="area"
-                                name="area"
-                                value={user.area}
+                                name="state"
+                                value={user.state}
                                 onChange={handleChange}
-                                placeholder="Enter area/street"
-                                autoComplete="address-line2"
+                                placeholder="Your state"
                                 required
                             />
+                        </div>
+
+                        <div className="input-row">
+                            <div className="input-group">
+                                <label>House/Apartment No.</label>
+                                <input
+                                    type="text"
+                                    name="houseNo"
+                                    value={user.houseNo}
+                                    onChange={handleChange}
+                                    placeholder="Building number"
+                                    required
+                                />
+                            </div>
+                            <div className="input-group">
+                                <label>Area/Street</label>
+                                <input
+                                    type="text"
+                                    name="area"
+                                    value={user.area}
+                                    onChange={handleChange}
+                                    placeholder="Street name"
+                                    required
+                                />
+                            </div>
                         </div>
                     </div>
 
-                    <button type="submit" className="user-address__submit-btn" >
+                    <button type="submit" className="submit-btn">
                         Save Address
                     </button>
                 </form>
