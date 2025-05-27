@@ -97,7 +97,7 @@ function UserAddress() {
                         </div>
 
                         <div className="input-group">
-                            <label>Alternate Number (Optional)</label>
+                            <label>Alternate Number</label>
                             <input
                                 type="tel"
                                 name="alternateNumber"
@@ -105,6 +105,7 @@ function UserAddress() {
                                 onChange={handleChange}
                                 placeholder="Alternative contact"
                                 pattern="[0-9]{10}"
+                                required
                             />
                         </div>
 
