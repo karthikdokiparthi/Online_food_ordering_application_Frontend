@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userDetails, userAddressDetails, logout } from './userSlice';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './UserProfile.css';
-import { FiEdit, FiLogOut } from 'react-icons/fi';
+import { FiEdit, FiLogOut, FiX } from 'react-icons/fi';
 
 function UserProfile() {
     const dispatch = useDispatch();
@@ -58,6 +58,23 @@ function UserProfile() {
         });
     };
 
+    const [bubbles, setBubbles] = useState([]);
+
+    useEffect(() => {
+        const createBubbles = () => {
+            const newBubbles = Array.from({ length: 30 }, (_, i) => ({
+                id: i,
+                size: Math.random() * 30 + 10,
+                left: Math.random() * 100,
+                delay: Math.random() * 2,
+                duration: Math.random() * 3 + 2,
+                color: `hsla(${Math.random() * 360}, 70%, 80%, 0.7)`
+            }));
+            setBubbles(newBubbles);
+        };
+        createBubbles();
+    }, []);
+
     // Loading state
     if (userDetailsStatus === "pending" || addressDetailsStatus === "pending") {
         return (
@@ -80,7 +97,22 @@ function UserProfile() {
     }
 
     return (
-        <div className="profile-overlay">
+        <div className="profile-container">
+            {bubbles.map(bubble => (
+                <div
+                    key={bubble.id}
+                    className="bubble"
+                    style={{
+                        width: `${bubble.size}px`,
+                        height: `${bubble.size}px`,
+                        left: `${bubble.left}%`,
+                        background: bubble.color,
+                        animationDelay: `${bubble.delay}s`,
+                        animationDuration: `${bubble.duration}s`
+                    }}
+                ></div>
+            ))}
+
             <div className="profile-content">
                 <div className="profile-header">
                     <h2>Profile Details</h2>
@@ -89,10 +121,9 @@ function UserProfile() {
                         onClick={handleClose}
                         aria-label="Close profile"
                     >
-                        &times;
+                        <FiX />
                     </button>
                 </div>
-
                 <div className="profile-body">
                     <div className="detail-item">
                         <span className="detail-label">Username:</span>
@@ -164,13 +195,13 @@ function UserProfile() {
 
                 <div className="profile-footer">
                     <button
-                        className="profile-btn profile-btn--edit"
+                        className="profile-btn edit-btn"
                         onClick={editAddress}
                     >
                         <FiEdit /> Edit Address
                     </button>
                     <button
-                        className="profile-btn profile-btn--logout"
+                        className="profile-btn logout-btn"
                         onClick={handleLogout}
                     >
                         <FiLogOut /> Logout
