@@ -1,17 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { FaStar, FaRegStar, FaStarHalfAlt, FaTimes } from 'react-icons/fa';
+import { FaStar, FaRegStar, FaStarHalfAlt, FaTimes, FaCheck } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllDishes, fetchDishesByCategory, clearSelectedCategory } from './restaurantSlice';
 import { addToCart } from '../Cart/cartSlice';
 import MiniDishList from './MiniDishList';
 import './Dishes.css';
 
+// Toast Notification Component
+const ToastNotification = ({ show, message }) => {
+    if (!show) return null;
+
+    return (
+        <div className="toast-notification">
+            <div className="toast-content">
+                <FaCheck className="toast-icon" />
+                <div className="toast-message">{message}</div>
+            </div>
+        </div>
+    );
+};
+
 function Dishes() {
     const [selectedDish, setSelectedDish] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [toast, setToast] = useState({ show: false, message: '' });
 
     const dispatch = useDispatch();
     const { dishes, dishStatus, selectedCategory } = useSelector((state) => state.restaurant);
+
+    // Show notification
+    const showToast = (message) => {
+        setToast({ show: true, message });
+        setTimeout(() => setToast({ show: false, message: '' }), 3000);
+    };
 
     // Fetch dishes when component mounts or category changes
     useEffect(() => {
@@ -55,6 +76,13 @@ function Dishes() {
         document.body.style.overflow = 'auto';
     };
 
+    // Handle add to cart with notification
+    const handleAddToCart = (item, e) => {
+        e.stopPropagation();
+        dispatch(addToCart({ dishId: item.id, quantity: 1 }));
+        showToast(`${item.name} added to cart successfully!`);
+    };
+
     if (dishStatus === 'loading') {
         return (
             <div className="dishes-container">
@@ -84,6 +112,8 @@ function Dishes() {
         <div className="dishes-main">
             <MiniDishList />
             <div className="dishes-container">
+                <ToastNotification show={toast.show} message={toast.message} />
+
                 <div className="dishes-header">
                     <h2 className="dishes-title">
                         {selectedCategory ? `${selectedCategory} Dishes` : 'Our Culinary Collection'}
@@ -125,10 +155,7 @@ function Dishes() {
                                 <p className="dish-description">{item.description}</p>
                                 <button
                                     className="dish-button"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        dispatch(addToCart({ dishId: item.id, quantity: 1 }));
-                                    }}>
+                                    onClick={(e) => handleAddToCart(item, e)}>
                                     Add to Cart
                                 </button>
                             </div>
@@ -178,6 +205,7 @@ function Dishes() {
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             dispatch(addToCart({ dishId: selectedDish.id, quantity: 1 }));
+                                            showToast(`${selectedDish.name} added to cart successfully!`);
                                         }}>
                                         Add to Cart - ${selectedDish.price.toFixed(2)}
                                     </button>

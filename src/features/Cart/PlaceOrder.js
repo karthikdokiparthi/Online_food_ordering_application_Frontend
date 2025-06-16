@@ -9,7 +9,6 @@ function PlaceOrder() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    // Redux state selectors
     const { address, userDetailsStatus, addressDetailsStatus } = useSelector(
         (state) => state.users
     );
@@ -106,7 +105,6 @@ function PlaceOrder() {
             </div>
 
             <div className="order-details-grid">
-                {/* Shipping Address Section */}
                 <div className="address-card">
                     <h3>Delivery Address</h3>
                     <div className="detail-item">
@@ -126,7 +124,6 @@ function PlaceOrder() {
                     </div>
                 </div>
 
-                {/* Order Summary Section */}
                 <div className="order-summary-card">
                     <h3>Order Summary</h3>
                     {cartData.cartItems.map(item => (
