@@ -4,9 +4,24 @@ import { fetchRestaurants, fetchRestaurantDishes } from './restaurantSlice';
 import { addToCart } from '../Cart/cartSlice';
 import './Restaurant.css';
 
+// Toast Notification Component
+const ToastNotification = ({ show, message }) => {
+    if (!show) return null;
+
+    return (
+        <div className="toast-notification">
+            <div className="toast-content">
+                <div className="toast-icon">✓</div>
+                <div className="toast-message">{message}</div>
+            </div>
+        </div>
+    );
+};
+
 function Restaurant() {
     const dispatch = useDispatch();
     const menuSectionRef = useRef(null);
+    const [toast, setToast] = useState({ show: false, message: '' });
 
     const {
         restaurant: restaurants,
@@ -18,6 +33,12 @@ function Restaurant() {
 
     const [selectedRestaurantId, setSelectedRestaurantId] = useState(null);
     const [selectedRestaurant, setSelectedRestaurant] = useState(null);
+
+    // Show notification
+    const showToast = (message) => {
+        setToast({ show: true, message });
+        setTimeout(() => setToast({ show: false, message: '' }), 3000);
+    };
 
     // Fetch restaurants on mount
     useEffect(() => {
@@ -38,12 +59,21 @@ function Restaurant() {
         }, 50);
     };
 
+    // Handle add to cart with notification
+    const handleAddToCart = (dish, e) => {
+        e.stopPropagation();
+        dispatch(addToCart({ dishId: dish.id, quantity: 1 }));
+        showToast(`${dish.name} added to cart successfully!`);
+    };
+
     // Loading/Error states for restaurants
     if (restaurantStatus === 'loading') return <div className="loading-container">Loading...</div>;
     if (restaurantStatus === 'error') return <div className="error-container">Error: {error}</div>;
 
     return (
         <div className="restaurant-app">
+            <ToastNotification show={toast.show} message={toast.message} />
+
             <header className="app-header">
                 <h1>Discover Restaurants</h1>
                 <p>Find the best food for you</p>
@@ -110,7 +140,7 @@ function Restaurant() {
                                                     <span className="price">${dish.price.toFixed(2)}</span>
                                                     <button
                                                         className="add-to-cart"
-                                                        onClick={(e) => dispatch(addToCart({ dishId: dish.id, quantity: 1 }))}
+                                                        onClick={(e) => handleAddToCart(dish, e)}
                                                     >Add to Cart</button>
                                                 </div>
                                             </div>
