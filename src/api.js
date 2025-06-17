@@ -2,7 +2,8 @@ import axios from 'axios';
 import { isTokenExpired } from './utils/token';
 
 const API = axios.create({
-    baseURL: 'http://localhost:8080',
+    //baseURL: 'http://localhost:8080',
+    baseURL: process.env.REACT_APP_API_URL,
 });
 
 // Request interceptor - handles token expiration before sending requests
