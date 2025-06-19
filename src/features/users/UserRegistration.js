@@ -37,7 +37,7 @@ function UserRegistration() {
 
             setTimeout(() => {
                 navigate('/login');
-            }, 1500);
+            }, 500);
         } catch (error) {
             const errorMessage = error.message || "Registration failed. Please try again.";
             setMessage({ type: 'error', text: errorMessage });
