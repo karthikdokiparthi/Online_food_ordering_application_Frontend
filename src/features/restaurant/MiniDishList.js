@@ -1,7 +1,7 @@
 import React from 'react';
 import './MiniDishList.css';
 import { useDispatch } from 'react-redux';
-import { setSelectedCategory, fetchAllDishes } from './restaurantSlice';
+import { setSelectedCategory } from './restaurantSlice';
 
 function MiniDishList() {
     const dispatch = useDispatch();
